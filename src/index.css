@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.2);
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 0 0 5px rgba(0, 224, 255, 0.6),
+                  0 0 10px rgba(0, 224, 255, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(0, 224, 255, 0.8),
+                  0 0 30px rgba(0, 224, 255, 0.6);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(0, 224, 255, 0.6),
+                  0 0 10px rgba(0, 224, 255, 0.4);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: 220 40% 5%;
+    --foreground: 0 0% 100%;
+
+    --card: 220 30% 10%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 220 30% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 188 100% 56%;
+    --primary-foreground: 220 40% 5%;
+
+    --secondary: 271 76% 62%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 30% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 210 100% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 20%;
+    --input: 220 30% 15%;
+    --ring: 188 100% 56%;
+
+    --radius: 1rem;
+
+    /* Neon colors */
+    --neon-cyan: 188 100% 56%;
+    --neon-purple: 271 76% 62%;
+    --neon-blue: 210 100% 60%;
+
+    /* Glassmorphism */
+    --glass-bg: 220 30% 10%;
+    --glass-border: 220 30% 25%;
+
+    /* Glow effects */
+    --glow-cyan: 188 100% 56%;
+    --glow-purple: 271 76% 62%;
+
+    --sidebar-background: 220 30% 8%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 188 100% 56%;
+    --sidebar-primary-foreground: 220 40% 5%;
+    --sidebar-accent: 220 30% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 220 30% 20%;
+    --sidebar-ring: 188 100% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  /* Neon glow text */
+  .glow-text-cyan {
+    text-shadow: 0 0 10px hsl(var(--neon-cyan)), 0 0 20px hsl(var(--neon-cyan) / 0.5);
+  }
+
+  .glow-text-purple {
+    text-shadow: 0 0 10px hsl(var(--neon-purple)), 0 0 20px hsl(var(--neon-purple) / 0.5);
+  }
+
+  /* Glassmorphic elements */
+  .glass {
+    background: hsl(var(--glass-bg) / 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+  }
+
+  .glass-strong {
+    background: hsl(var(--glass-bg) / 0.6);
+    backdrop-filter: blur(30px);
+    border: 1px solid hsl(var(--glass-border) / 0.5);
+  }
+
+  /* Neon border effects */
+  .border-glow-cyan {
+    border-color: hsl(var(--neon-cyan));
+    box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5), 0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  .border-glow-purple {
+    border-color: hsl(var(--neon-purple));
+    box-shadow: 0 0 10px hsl(var(--neon-purple) / 0.5), 0 0 20px hsl(var(--neon-purple) / 0.3);
+  }
+
+  /* Typing animation */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .typing-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+
+  /* Pulse animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5);
+    }
+    50% {
+      box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.8), 0 0 30px hsl(var(--neon-cyan) / 0.5);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Shimmer loading effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--glass-bg) / 0.3) 0%,
+      hsl(var(--neon-cyan) / 0.4) 50%,
+      hsl(var(--glass-bg) / 0.3) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Fade in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+}
